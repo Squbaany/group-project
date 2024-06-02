@@ -1,21 +1,27 @@
 export const headerLinks = [
   {
     label: "Phones",
+    route: "phones",
   },
   {
     label: "Tablets",
+    route: "tablets",
   },
   {
     label: "Laptops",
+    route: "laptops",
   },
   {
     label: "Smart Watches",
+    route: "smart-watches",
   },
   {
     label: "Speakers",
+    route: "speakers",
   },
   {
     label: "Accessories",
+    route: "accessories",
   },
 ];
 

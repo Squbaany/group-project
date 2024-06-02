@@ -11,8 +11,10 @@ export default async function Home() {
       <section className="bg-gradient-to-t from-primary-300 to-primary-400 py-5 md:py-10">
         <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
           <div className="flex flex-col justify-center gap-8">
-            <h1 className="h1-bold">The Number One Tech Store In The World</h1>
-            <p className="p-regular-20 md:p-regular-24 w-[70%]">
+            <h1 className="h1-bold text-white">
+              The Number One Tech Store In The World
+            </h1>
+            <p className="p-regular-20 md:p-regular-24 w-[70%] text-white">
               Check out hundreds of high quality tech products. Shop with us for
               guaranteed quality, low prices and fast delivery
             </p>
