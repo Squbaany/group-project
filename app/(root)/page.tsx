@@ -8,7 +8,7 @@ import Link from "next/link";
 export default async function Home() {
   return (
     <>
-      <section className="bg-gradient-to-t from-primary-300 to-primary-500 py-5 md:py-10">
+      <section className="bg-gradient-to-t from-primary-300 to-primary-400 py-5 md:py-10">
         <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
           <div className="flex flex-col justify-center gap-8">
             <h1 className="h1-bold">The Number One Tech Store In The World</h1>
@@ -21,7 +21,7 @@ export default async function Home() {
               <Link href="#categories">Shop now</Link>
             </Button>
           </div>
-          <div className="bg-primary rounded-3xl content-end">
+          <div className="bg-primary-500 rounded-3xl content-end">
             <Image
               src={"/ui/hero/hero-1.png"}
               width={1000}

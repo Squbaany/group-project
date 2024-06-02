@@ -71,26 +71,24 @@ export type GetRelatedEventsByCategoryParams = {
   page: number | string;
 };
 
-export type Event = {
+export type Product = {
   _id: string;
   title: string;
   description: string;
-  price: string;
-  isFree: boolean;
   imageUrl: string;
-  location: string;
-  startDateTime: Date;
-  endDateTime: Date;
-  url: string;
-  organizer: {
-    _id: string;
-    firstName: string;
-    lastName: string;
-  };
+  price: number;
   category: {
     _id: string;
     name: string;
   };
+  properties: { key: string; value: string }[];
+};
+
+// ====== CART PARAMS
+
+export type CartItem = {
+  product: Product;
+  quantity: number;
 };
 
 // ====== CATEGORY PARAMS
