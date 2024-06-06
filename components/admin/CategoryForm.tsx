@@ -8,7 +8,7 @@ import {
   updateCategory,
 } from "@/lib/mongodb/actions/category.actions";
 
-export default function CategoryForm(category: categoryId) {
+export default function CategoryForm(category?: categoryId) {
   const router = useRouter();
 
   const [name, setName] = useState(category.name || "");
@@ -41,7 +41,7 @@ export default function CategoryForm(category: categoryId) {
     });
   }
 
-  function handlePropertyName(property, index: number, newVal: string) {
+  function handlePropertyName(index: number, newVal: string) {
     setProperties((prev) => {
       const properties = [...prev];
       properties[index].key = newVal;
@@ -49,7 +49,7 @@ export default function CategoryForm(category: categoryId) {
     });
   }
 
-  function handlePropertyValues(property, index: number, newVal: string) {
+  function handlePropertyValues(index: number, newVal: string) {
     setProperties((prev) => {
       const properties = [...prev];
       properties[index].vals = newVal;
