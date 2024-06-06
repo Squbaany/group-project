@@ -8,7 +8,7 @@ import {
   updateCategory,
 } from "@/lib/mongodb/actions/category.actions";
 
-export default function CategoryForm(category?: categoryId) {
+export default function CategoryForm({ category }: { category?: categoryId }) {
   const router = useRouter();
 
   const [name, setName] = useState(category.name || "");
