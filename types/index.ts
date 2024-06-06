@@ -13,17 +13,21 @@ export type UpdateUserParams = {
 
 // ====== PRODUCT PARAMS
 export type CreateProductParams = {
-  name: string;
+  title: string;
   description: string;
   imageUrl: string;
   price: number;
   category: string;
-  properties: { key: string; vals: string }[];
+  properties: { key: string; value: string }[];
 };
+
+export type deleteProdName = {
+  title: string;
+}
 
 export type UpdateProductParams = {
   _id: string;
-  name: string;
+  title: string;
   description: string;
   imageUrl: string;
   price: number;
@@ -65,12 +69,12 @@ export type Product = {
 
 export type ProductId = {
   _id?: string;
-  name?: string;
+  title?: string;
   description?: string;
   imageUrl?: string;
   price?: number;
   category?: string;
-  properties: { key: string; vals: string[] }[];
+  properties?: { key: string; value: string }[];
 };
 
 // ====== CART PARAMS
@@ -83,14 +87,19 @@ export type CartItem = {
 // ====== CATEGORY PARAMS
 export type CreateCategoryParams = {
   name: string;
-  properties: { key: string; vals: string[] }[];
+  properties: { key: string; value: string[] }[];
 };
 
 export type categoryId = {
   _id?: string;
   name?: string;
-  properties: { key: string; vals: string[] }[];
+  properties?: { key: string; value: string[] }[];
 };
+
+export type categoryProps = {
+  key: string;
+  value: string[];
+}
 
 // ====== ORDER PARAMS
 export type CheckoutOrderParams = {

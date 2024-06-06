@@ -1,4 +1,4 @@
-import { OurFileRouter } from "@/app/api/webhook/uploadthing/core";
+import { OurFileRouter } from "@/app/api/uploadthing/core";
 import {
   generateUploadButton,
   generateUploadDropzone,

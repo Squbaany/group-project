@@ -1,13 +1,29 @@
 "use client";
 
 import CategoryForm from "@/components/admin/CategoryForm";
-import { getCategoryById } from "@/lib/mongodb/actions/category.actions";
+import {getCategoryById} from "@/lib/mongodb/actions/category.actions";
 import { usePathname } from "next/navigation";
+import {useEffect, useState} from "react";
+import {categoryId} from "@/types";
 
-export default async function EditCategory() {
+export default function EditCategory() {
   const path: string = usePathname();
   const id: string = path.slice(path.lastIndexOf("/") + 1, path.length);
-  const category = await getCategoryById(id);
+  // const category = await getCategoryById(id);
+
+  const [category, setCategory] = useState<categoryId>();
+
+
+  useEffect(() => {
+    (async () => {
+      const data = await getCategoryById(id);
+      setCategory(data);
+    })();
+  }, [id]);
+
+  if(!category){
+    return <div>Loading...</div>
+  }
 
   return (
     <div className="bg-primary-300 flex flex-col mt-2 mr-2 rounded-lg p-4 mb-2">

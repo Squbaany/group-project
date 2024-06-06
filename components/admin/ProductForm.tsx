@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { CreateProductParams, ProductId } from "@/types";
+import {CreateProductParams, ProductId} from "@/types";
 import { useEffect, useState } from "react";
 import { getCategories } from "@/lib/mongodb/actions/category.actions";
 import {
@@ -14,7 +14,7 @@ import { FileUploader } from "./FileUploader";
 export default function ProductForm(product: ProductId) {
   const router = useRouter();
 
-  const [name, setName] = useState(product.name || "");
+  const [name, setName] = useState(product.title || "");
   const [category, setCategory] = useState(product.category || "");
   const [description, setDescription] = useState(product.description || "");
   const [price, setPrice] = useState(product.price || "");
@@ -24,13 +24,11 @@ export default function ProductForm(product: ProductId) {
   const [categories, setCategories] = useState([]);
   const [properties, setProperties] = useState(product.properties || []);
 
-  console.log(properties);
-
   const { startUpload } = useUploadThing("imageUploader");
 
   const handleSubmit = async () => {
     const rawData: CreateProductParams = {
-      name: name,
+      title: name,
       description: description,
       imageUrl: image,
       price: +price,
@@ -45,15 +43,13 @@ export default function ProductForm(product: ProductId) {
       rawData.imageUrl = uploadImages[0].url;
     }
 
-    console.log(rawData);
-
     if (product._id) {
       await updateProduct(product._id, rawData);
     } else {
       await createProduct(rawData);
     }
 
-    return router.push("/products");
+    return router.push("/dashboard/products");
   };
 
   useEffect(() => {
@@ -65,20 +61,20 @@ export default function ProductForm(product: ProductId) {
 
   const propertiesToFill = [];
   if (categories.length > 0 && category) {
-    const selectedCat = categories.find(({ _id }) => _id === category);
-    propertiesToFill.push(...selectedCat.properties);
+    const selectedCat: any = categories.find(({ _id }) => _id === category);
+    propertiesToFill.push(...selectedCat?.properties);
   }
 
-  function setProductProp(propKey, selVal) {
+  function setProductProp(propKey: string, selVal: string) {
     setProperties((prev) => {
-      const prevTab = [...prev];
+      const prevTab: { key: string; value: string }[] = [...prev];
 
       if (prevTab.find((el) => el.key === propKey)) {
         const idx = prevTab.findIndex((el) => el.key === propKey);
-        prevTab[idx].vals = selVal;
+        prevTab[idx].value = selVal;
         return prevTab;
       } else {
-        const propsToAdd = { key: propKey, vals: selVal };
+        const propsToAdd = { key: propKey, value: selVal };
         return [...prev, propsToAdd];
       }
     });
@@ -126,17 +122,18 @@ export default function ProductForm(product: ProductId) {
                   <div>{p.key}</div>
                   <select
                     className="admininput"
+                    //@ts-ignore
                     value={
                       product._id
                         ? properties[
                             properties.findIndex((el) => el.key === p.key)
-                          ].vals
+                          ].value
                         : properties[p._id]
                     }
                     onChange={(ev) => setProductProp(p.key, ev.target.value)}
                   >
                     <option value="None">None</option>
-                    {p.vals.map((v) => (
+                    {p.value.map((v: string) => (
                       <option value={v} key={v}>
                         {v}
                       </option>

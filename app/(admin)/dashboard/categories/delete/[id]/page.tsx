@@ -3,7 +3,6 @@ import {
   getCategoryById,
   deleteCategory,
 } from "@/lib/mongodb/actions/category.actions";
-import { categoryId } from "@/types";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -13,7 +12,7 @@ export default function DeleteCategory() {
   const path: string = usePathname();
   const id: string = path.slice(path.lastIndexOf("/") + 1, path.length);
 
-  const [category, setCategory] = useState<categoryId>();
+  const [category, setCategory] = useState({ name: "" });
 
   useEffect(() => {
     (async () => {

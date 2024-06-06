@@ -8,15 +8,15 @@ import {
   updateCategory,
 } from "@/lib/mongodb/actions/category.actions";
 
-export default function CategoryForm({ category }: { category?: categoryId }) {
+export default function CategoryForm(category: categoryId) {
   const router = useRouter();
 
-  const [name, setName] = useState(category.name || "");
-  const [properties, setProperties] = useState(category.properties || []);
+  const [name, setName] = useState(category.name ? category.name : "");
+  const [properties, setProperties] = useState(category.properties ? category.properties : []);
 
   const handleSubmit = async () => {
     properties.forEach((el) => {
-      if (typeof el.vals == "string") el.vals = el.vals.split(",");
+      if (typeof el.value[0] === "string") el.value = el.value[0].split(",");
     });
 
     const rawData = {
@@ -31,13 +31,14 @@ export default function CategoryForm({ category }: { category?: categoryId }) {
     }
 
     setName("");
+    setProperties([])
 
     return router.push("/dashboard/categories");
   };
 
   function addProperty() {
     setProperties((prev) => {
-      return [...prev, { key: "", vals: "" }];
+      return [...prev, { key: "", value: [] }];
     });
   }
 
@@ -52,14 +53,14 @@ export default function CategoryForm({ category }: { category?: categoryId }) {
   function handlePropertyValues(index: number, newVal: string) {
     setProperties((prev) => {
       const properties = [...prev];
-      properties[index].vals = newVal;
+      properties[index].value = [newVal];
       return properties;
     });
   }
 
   function removeProperty(indexToRemove: number) {
     setProperties((prev) => {
-      return [...prev].filter((p, pIndex) => {
+      return [...prev].filter((_, pIndex) => {
         return pIndex !== indexToRemove;
       });
     });
@@ -92,16 +93,16 @@ export default function CategoryForm({ category }: { category?: categoryId }) {
                 type="text"
                 value={property.key}
                 onChange={(ev) =>
-                  handlePropertyName(property, index, ev.target.value)
+                  handlePropertyName(index, ev.target.value)
                 }
                 placeholder="property name"
               />
               <input
                 className="mb-0 admininput"
                 type="text"
-                value={property.vals}
+                value={property.value}
                 onChange={(ev) =>
-                  handlePropertyValues(property, index, ev.target.value)
+                  handlePropertyValues(index, ev.target.value)
                 }
                 placeholder="values, comma seperator"
               />

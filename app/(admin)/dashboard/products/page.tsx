@@ -1,9 +1,24 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { getProducts } from "@/lib/mongodb/actions/products.actions";
+import {useEffect, useState} from "react";
+import {Product} from "@/types";
 
-export default async function Products() {
-  const products = await getProducts();
+export default function Products() {
+  // const products = await getProducts();
+  const [products, setProducts] = useState<Product[]>()
+
+  useEffect(() => {
+    (async () => {
+      const data = await getProducts();
+      setProducts(data);
+    })();
+  }, []);
+
+  if(!products){
+    return <div>Loading...</div>
+  }
 
   return (
     <div className="bg-primary-300 flex-grow mt-2 mr-2 rounded-lg p-4 mb-2">
@@ -25,7 +40,7 @@ export default async function Products() {
         <tbody>
           {products.map((product: any) => (
             <tr key={product._id}>
-              <td>{product.name}</td>
+              <td>{product.title}</td>
               <td>{product.description}</td>
               <td>{product.price}</td>
               <td>
@@ -35,7 +50,7 @@ export default async function Products() {
                     <p>Properties:</p>
                     {product.properties.map((el: any) => (
                       <p key={el._id}>
-                        {el.key}: {el.vals}
+                        {el.key}: {el.value}
                       </p>
                     ))}
                   </>
