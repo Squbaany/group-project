@@ -1,3 +1,3 @@
 export default function Product() {
-  return <div className="wrapper">xd</div>;
+  return <div className="wrapper">Product</div>;
 }
