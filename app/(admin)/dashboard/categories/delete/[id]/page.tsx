@@ -3,6 +3,7 @@ import {
   getCategoryById,
   deleteCategory,
 } from "@/lib/mongodb/actions/category.actions";
+import { categoryId } from "@/types";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -12,7 +13,7 @@ export default function DeleteCategory() {
   const path: string = usePathname();
   const id: string = path.slice(path.lastIndexOf("/") + 1, path.length);
 
-  const [category, setCategory] = useState({});
+  const [category, setCategory] = useState<categoryId>();
 
   useEffect(() => {
     (async () => {
@@ -22,18 +23,18 @@ export default function DeleteCategory() {
   }, [id]);
 
   function goBack() {
-    return router.push("/products");
+    return router.push("/dashboard/products");
   }
 
   async function delCategory() {
     await deleteCategory(id);
-    return router.push("/categories");
+    return router.push("/dashboard/categories");
   }
 
   return (
     <>
       <h1 className="text-center">
-        Do you really want to delete product &quot;{category.name}&quot;
+        Do you really want to delete product &quot;{category!.name}&quot;
       </h1>
 
       <div className="flex gap-2 justify-center">
