@@ -137,7 +137,9 @@ export default function ProductForm(product: ProductId) {
                   >
                     <option value="None">None</option>
                     {p.vals.map((v) => (
-                      <option value={v}>{v}</option>
+                      <option value={v} key={v}>
+                        {v}
+                      </option>
                     ))}
                   </select>
                 </div>
