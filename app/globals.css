@@ -268,3 +268,56 @@ body {
 .react-datepicker__time-list-item--selected {
   background-color: #3b3b3b !important;
 }
+
+/* xdd */
+
+.admininput {
+  @apply border-2 border-gray-300 rounded-md px-1 w-full;
+  @apply mb-2;
+}
+
+.admininput:focus {
+  @apply border-primary;
+}
+
+.adminh1 {
+  @apply text-primary mb-2 text-xl;
+}
+
+.adminlabel {
+  @apply text-primary;
+}
+
+.btn-primary {
+  @apply bg-primary text-white px-4 py-1 rounded-md;
+}
+
+table.basic {
+  @apply w-full;
+}
+
+table.basic thead tr td {
+  @apply bg-primary text-white;
+}
+
+table.basic tr td {
+  @apply border border-primary-500 p-1;
+}
+
+table.basic a,
+table.basic button {
+  @apply bg-primary text-white text-sm py-1 px-2 rounded-md inline-flex mr-1;
+}
+
+.btn-default,
+.btn-red {
+  @apply px-4 py-1 rounded-md;
+}
+
+.btn-red {
+  @apply bg-red-800 text-white;
+}
+
+.btn-default {
+  @apply bg-gray-500 text-white;
+}

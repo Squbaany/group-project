@@ -1,3 +1,4 @@
+import Nav from "@/components/admin/nav";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
@@ -15,8 +16,8 @@ export default function DashboardLayout({
   }
 
   return (
-    <div className="flex h-screen flex-col">
-      <h1>Admin panel</h1>
+    <div className="flex h-screen bg-primary">
+      <Nav />
       {children}
     </div>
   );

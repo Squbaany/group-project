@@ -24,6 +24,6 @@ const ProductSchema = new Schema({
   ],
 });
 
-const Event = models.Event || model("Product", ProductSchema);
+const Product = models.Product || model("Product", ProductSchema);
 
-export default Event;
+export default Product;

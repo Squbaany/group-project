@@ -13,58 +13,37 @@ export type UpdateUserParams = {
 
 // ====== PRODUCT PARAMS
 export type CreateProductParams = {
-  product: {
-    title: string;
-    description: string;
-    location: string;
-    imageUrl: string;
-    startDateTime: Date;
-    endDateTime: Date;
-    categoryId: string;
-    price: string;
-    isFree: boolean;
-    url: string;
-  };
-  path: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  price: number;
+  category: string;
+  properties: { key: string; vals: string }[];
 };
 
-export type UpdateEventParams = {
-  userId: string;
-  event: {
-    _id: string;
-    title: string;
-    imageUrl: string;
-    description: string;
-    location: string;
-    startDateTime: Date;
-    endDateTime: Date;
-    categoryId: string;
-    price: string;
-    isFree: boolean;
-    url: string;
-  };
-  path: string;
+export type UpdateProductParams = {
+  _id: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  price: number;
+  category: string;
+  properties: { key: string; vals: string }[];
 };
 
-export type DeleteEventParams = {
+export type DeleteProductParams = {
   eventId: string;
   path: string;
 };
 
-export type GetAllEventsParams = {
+export type GetAllProductsParams = {
   query: string;
   category: string;
   limit: number;
   page: number;
 };
 
-export type GetEventsByUserParams = {
-  userId: string;
-  limit?: number;
-  page: number;
-};
-
-export type GetRelatedEventsByCategoryParams = {
+export type GetRelatedProductsByCategoryParams = {
   categoryId: string;
   eventId: string;
   limit?: number;
@@ -84,6 +63,16 @@ export type Product = {
   properties: { key: string; value: string }[];
 };
 
+export type ProductId = {
+  _id?: string;
+  name?: string;
+  description?: string;
+  imageUrl?: string;
+  price?: number;
+  category?: string;
+  properties: { key: string; vals: string[] }[];
+};
+
 // ====== CART PARAMS
 
 export type CartItem = {
@@ -93,27 +82,34 @@ export type CartItem = {
 
 // ====== CATEGORY PARAMS
 export type CreateCategoryParams = {
-  categoryName: string;
+  name: string;
+  properties: { key: string; vals: string[] }[];
+};
+
+export type categoryId = {
+  _id?: string;
+  name?: string;
+  properties: { key: string; vals: string[] }[];
 };
 
 // ====== ORDER PARAMS
 export type CheckoutOrderParams = {
-  eventTitle: string;
-  eventId: string;
-  price: string;
-  isFree: boolean;
+  createdAt: Date;
+  stripeId: string;
+  totalAmount: string;
+  items: { id: string; quantity: number }[];
   buyerId: string;
 };
 
 export type CreateOrderParams = {
   stripeId: string;
-  eventId: string;
+  productId: string;
   buyerId: string;
   totalAmount: string;
   createdAt: Date;
 };
 
-export type GetOrdersByEventParams = {
+export type GetOrdersByProductParams = {
   eventId: string;
   searchString: string;
 };

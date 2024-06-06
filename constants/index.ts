@@ -25,6 +25,39 @@ export const headerLinks = [
   },
 ];
 
+export const CategoryLinks = [
+  {
+    label: "Phones",
+    route: "phones",
+    img: "/ui/categories/phones-category.png",
+  },
+  {
+    label: "Tablets",
+    route: "tablets",
+    img: "/ui/categories/ipads-category.png",
+  },
+  {
+    label: "Laptops",
+    route: "laptops",
+    img: "/ui/categories/laptops-category.png",
+  },
+  {
+    label: "Smart Watches",
+    route: "smart-watches",
+    img: "/ui/categories/watches-category.png",
+  },
+  {
+    label: "Speakers",
+    route: "speakers",
+    img: "/ui/categories/speakers-category.png",
+  },
+  {
+    label: "Accessories",
+    route: "accessories",
+    img: "/ui/categories/accessories-category.png",
+  },
+];
+
 export const perks = [
   {
     title: "Free Shipping",
