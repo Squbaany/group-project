@@ -8,6 +8,13 @@ type Props = {
 };
 
 const ProductsShowcase = ({ products }: Props) => {
+  if (products.length === 0)
+    return (
+      <div className="wrapper flex-center">
+        <p>No products found</p>
+      </div>
+    );
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {products.map((product) => (

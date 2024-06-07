@@ -7,6 +7,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import NavItems from "./NavItems";
 import MobileNav from "./MobileNav";
+import { useCart } from "@/context/Cart/CartContext";
 
 const OrdersIcon = () => {
   return (
@@ -50,6 +51,8 @@ const OrdersIcon = () => {
 };
 
 const Header = () => {
+  const { cartCount } = useCart();
+
   return (
     <header className="w-full border-b">
       <div className="wrapper flex items-center justify-between">
@@ -77,7 +80,7 @@ const Header = () => {
             </UserButton>
           </SignedIn>
           <MobileNav />
-          <Link href="/cart">
+          <Link href="/cart" className="relative">
             <Image
               src="/assets/icons/cart.svg"
               width={24}
@@ -85,6 +88,11 @@ const Header = () => {
               alt="Cart"
               className="cursor-pointer"
             />
+            {cartCount !== 0 && (
+              <div className="absolute top-3 left-3 bg-red-500  w-4 h-4 text-center rounded-full">
+                <p className="text-[10px] text-white">{cartCount}</p>
+              </div>
+            )}
           </Link>
         </div>
       </div>

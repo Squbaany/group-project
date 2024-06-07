@@ -1,8 +1,8 @@
 "use server";
 
-import { CreateProductParams } from "@/types";
+import { CreateProductParams, ProductId } from "@/types";
 import { connectToDatabase } from "..";
-import Product from "../models/product.model";
+import Product, { IProduct } from "../models/product.model";
 import Category from "../models/category.model";
 
 export async function createProduct(product: CreateProductParams) {
@@ -33,7 +33,7 @@ export async function getProducts() {
   }
 }
 
-export async function getProductsByQuery(limit: number) {
+export async function getProductsByQuery(limit = 4) {
   try {
     await connectToDatabase();
 
@@ -56,6 +56,26 @@ export async function getProductsByCategory(id: string) {
     await connectToDatabase();
 
     const products = await Product.find({ category: id }).populate({
+      path: "category",
+      model: Category,
+      select: "_id name",
+    });
+
+    return JSON.parse(JSON.stringify(products));
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function getRelatedProducts(product: ProductId) {
+  try {
+    await connectToDatabase();
+
+    const conditions = {
+      $and: [{ category: product.category }, { _id: { $ne: product._id } }],
+    };
+
+    const products = await Product.find(conditions).populate({
       path: "category",
       model: Category,
       select: "_id name",
