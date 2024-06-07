@@ -37,6 +37,10 @@ export const CartProvider = ({ children }: Props) => {
   useEffect(() => {
     const localCart = localStorage.getItem("cart");
 
+    if (!localCart) {
+      localStorage.setItem("cart", JSON.stringify([]));
+    }
+
     const parsedCart = JSON.parse(localCart || "{}");
 
     if (parsedCart) {
