@@ -3,6 +3,7 @@
 import { CreateProductParams } from "@/types";
 import { connectToDatabase } from "..";
 import Product from "../models/product.model";
+import Category from "../models/category.model";
 
 export async function createProduct(product: CreateProductParams) {
   try {
@@ -20,7 +21,10 @@ export async function getProducts() {
   try {
     await connectToDatabase();
 
-    const products = await Product.find().populate("category", "_id name");
+    const products = await Product.find().populate({
+      path: "category",
+      model: Category,
+    });
 
     return JSON.parse(JSON.stringify(products));
   } catch (err) {
@@ -33,7 +37,7 @@ export async function getProductsByQuery(limit: number) {
     await connectToDatabase();
 
     const products = await Product.find()
-      .populate("category", "_id name")
+      .populate({ path: "category", model: Category })
       .limit(limit);
 
     return JSON.parse(JSON.stringify(products));
