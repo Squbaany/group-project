@@ -24,6 +24,7 @@ export async function getProducts() {
     const products = await Product.find().populate({
       path: "category",
       model: Category,
+      select: "_id name",
     });
 
     return JSON.parse(JSON.stringify(products));
@@ -37,7 +38,11 @@ export async function getProductsByQuery(limit: number) {
     await connectToDatabase();
 
     const products = await Product.find()
-      .populate({ path: "category", model: Category })
+      .populate({
+        path: "category",
+        model: Category,
+        select: "_id name",
+      })
       .limit(limit);
 
     return JSON.parse(JSON.stringify(products));
@@ -50,10 +55,11 @@ export async function getProductsByCategory(id: string) {
   try {
     await connectToDatabase();
 
-    const products = await Product.find({ category: id }).populate(
-      "category",
-      "_id name"
-    );
+    const products = await Product.find({ category: id }).populate({
+      path: "category",
+      model: Category,
+      select: "_id name",
+    });
 
     return JSON.parse(JSON.stringify(products));
   } catch (err) {
