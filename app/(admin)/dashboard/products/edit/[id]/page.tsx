@@ -17,7 +17,7 @@ export default function EditProduct() {
       const data = await getProductById(id);
       setProduct(data);
     })();
-  });
+  }, []);
 
   return (
     <div className="bg-primary-300 flex flex-col mt-2 mr-2 rounded-lg p-4 mb-2">

@@ -89,6 +89,11 @@ export const CartProvider = ({ children }: Props) => {
   };
 
   const updateCartItemQuantity = (productId: string, quantity: number) => {
+    if (quantity <= 0) {
+      removeFromCart(productId);
+      return;
+    }
+
     const existingCartItemIndex = cartItems.findIndex(
       (item) => item.product._id === productId
     );

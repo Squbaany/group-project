@@ -21,7 +21,7 @@ export default function DeleteProducts() {
       const data = await getProductById(id);
       setProduct(data);
     })();
-  });
+  }, []);
 
   function goBack() {
     return router.push("/dashboard/products");

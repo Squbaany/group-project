@@ -44,7 +44,7 @@ export default function Cart() {
           {cartItems.map((item) => (
             <div
               key={item.product._id}
-              className="flex flex-col md:flex-row gap-10 justify-between items-center border p-5 rounded-xl"
+              className="flex flex-col md:flex-row gap-10 md:gap-0 justify-between items-center border p-5 rounded-xl"
             >
               <div className="flex flex-row items-center gap-4">
                 <Image

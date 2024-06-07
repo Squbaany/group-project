@@ -23,17 +23,20 @@ const ProductsShowcase = ({ products }: Props) => {
           key={product._id}
           className="border rounded-xl p-4 hover:shadow-xl hover:border-primary duration-200"
         >
-          <div className="flex flex-col justify-center items-center ">
+          <div className="flex flex-col h-full">
             <Image
               src={product.imageUrl}
               alt={product.title}
               width={300}
-              height={400}
+              height={300}
+              className="aspect-[5/6]"
             />
-            <div className="w-full pt-4 px-4">
+            <div className="pt-4 px-4l">
               <p className="p-semibold-20">{product.title}</p>
               <p className="p-regular-16">{product.description}</p>
-              <p className="p-medium-16 text-green-500 mt-6">
+            </div>
+            <div className="h-full flex items-end">
+              <p className="p-medium-16 text-green-500 ">
                 $ {product.price}
                 {product.price > 150 && (
                   <span className="text-primary-300 ml-2">free shipping</span>
