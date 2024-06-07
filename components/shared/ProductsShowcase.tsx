@@ -28,7 +28,7 @@ const ProductsShowcase = ({ products }: Props) => {
               src={product.imageUrl}
               alt={product.title}
               width={300}
-              height={500}
+              height={400}
             />
             <div className="w-full pt-4 px-4">
               <p className="p-semibold-20">{product.title}</p>
