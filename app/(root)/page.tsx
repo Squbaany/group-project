@@ -2,12 +2,12 @@ import CategoriesShowcase from "@/components/shared/CategoriesShowcase";
 import Perks from "@/components/shared/Perks";
 import ProductsShowcase from "@/components/shared/ProductsShowcase";
 import { Button } from "@/components/ui/button";
-import { getProducts } from "@/lib/mongodb/actions/products.actions";
+import { getProductsByQuery } from "@/lib/mongodb/actions/products.actions";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
-  const products = await getProducts(4);
+  const products = await getProductsByQuery(4);
 
   return (
     <>

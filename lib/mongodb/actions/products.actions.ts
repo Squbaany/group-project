@@ -16,19 +16,25 @@ export async function createProduct(product: CreateProductParams) {
   }
 }
 
-export async function getProducts(limit?: number) {
+export async function getProducts() {
   try {
     await connectToDatabase();
 
-    var products = {};
+    const products = await Product.find().populate("category", "_id name");
 
-    if (!limit) {
-      products = await Product.find().populate("category", "_id name");
-    } else {
-      products = await Product.find()
-        .populate("category", "_id name")
-        .limit(limit);
-    }
+    return JSON.parse(JSON.stringify(products));
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function getProductsByQuery(limit: number) {
+  try {
+    await connectToDatabase();
+
+    const products = await Product.find()
+      .populate("category", "_id name")
+      .limit(limit);
 
     return JSON.parse(JSON.stringify(products));
   } catch (err) {
