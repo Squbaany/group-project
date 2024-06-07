@@ -5,8 +5,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { getCategoryByName } from "@/lib/mongodb/actions/category.actions";
 import { getProductsByCategory } from "@/lib/mongodb/actions/products.actions";
-import { ProductId, categoryId } from "@/types";
+import { Product, categoryId } from "@/types";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
 type CategoriesProps = {
@@ -16,8 +17,10 @@ type CategoriesProps = {
 export default function Categories({
   params: { categoryName },
 }: CategoriesProps) {
+  const searchParams = useSearchParams();
+
   const [category, setCategory] = useState<categoryId>();
-  const [products, setProducts] = useState<ProductId[]>();
+  const [products, setProducts] = useState<Product[]>();
 
   useEffect(() => {
     (async () => {
@@ -49,7 +52,7 @@ export default function Categories({
 
   return (
     <div className="wrapper flex flex-col md:flex-row">
-      <div className="p-8 md:border-r">
+      <div className="p-8 md:border-r min-w-fit">
         <h2 className="h5-bold mb-8">Filters</h2>
         <div className="flex flex-col gap-6">
           {category?.properties?.map((property) => (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import {CreateProductParams, ProductId} from "@/types";
+import { CreateProductParams, ProductId } from "@/types";
 import { useEffect, useState } from "react";
 import { getCategories } from "@/lib/mongodb/actions/category.actions";
 import {

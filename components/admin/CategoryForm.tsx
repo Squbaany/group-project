@@ -12,7 +12,9 @@ export default function CategoryForm(category: categoryId) {
   const router = useRouter();
 
   const [name, setName] = useState(category.name ? category.name : "");
-  const [properties, setProperties] = useState(category.properties ? category.properties : []);
+  const [properties, setProperties] = useState(
+    category.properties ? category.properties : []
+  );
 
   const handleSubmit = async () => {
     properties.forEach((el) => {
@@ -31,7 +33,7 @@ export default function CategoryForm(category: categoryId) {
     }
 
     setName("");
-    setProperties([])
+    setProperties([]);
 
     return router.push("/dashboard/categories");
   };
@@ -92,18 +94,14 @@ export default function CategoryForm(category: categoryId) {
                 className="mb-0 admininput"
                 type="text"
                 value={property.key}
-                onChange={(ev) =>
-                  handlePropertyName(index, ev.target.value)
-                }
+                onChange={(ev) => handlePropertyName(index, ev.target.value)}
                 placeholder="property name"
               />
               <input
                 className="mb-0 admininput"
                 type="text"
                 value={property.value}
-                onChange={(ev) =>
-                  handlePropertyValues(index, ev.target.value)
-                }
+                onChange={(ev) => handlePropertyValues(index, ev.target.value)}
                 placeholder="values, comma seperator"
               />
               <button

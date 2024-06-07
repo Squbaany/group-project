@@ -60,21 +60,18 @@ export type Product = {
   description: string;
   imageUrl: string;
   price: number;
-  category: {
-    _id: string;
-    name: string;
-  };
+  category: string;
   properties: { key: string; value: string }[];
 };
 
 export type ProductId = {
-  _id: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  price: number;
-  category: string;
-  properties: { key: string; value: string }[];
+  _id?: string;
+  title?: string;
+  description?: string;
+  imageUrl?: string;
+  price?: number;
+  category?: string;
+  properties?: { key: string; value: string }[];
 };
 
 // ====== CART PARAMS
