@@ -26,17 +26,19 @@ export default function Categories({
     (async () => {
       try {
         const fetchedCategory = await getCategoryByName(categoryName);
+
         setCategory(fetchedCategory);
 
         const fetchedProducts = await getProductsByCategory(
           fetchedCategory._id
         );
+
         setProducts(fetchedProducts);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, []);
+  }, [categoryName]);
 
   if (!category || !products)
     return (

@@ -53,7 +53,6 @@ export default function Cart() {
                   width={100}
                   height={100}
                 />
-
                 <div>
                   <h3 className="h5-bold">{item.product.title}</h3>
                   <p className="text-primary-400">{item.product.description}</p>
