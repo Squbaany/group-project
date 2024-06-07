@@ -41,7 +41,7 @@ export const CartProvider = ({ children }: Props) => {
       localStorage.setItem("cart", JSON.stringify([]));
     }
 
-    const parsedCart = JSON.parse(localCart || "{}");
+    const parsedCart = JSON.parse(localCart || "[]");
 
     if (parsedCart) {
       setCartItems(parsedCart);
