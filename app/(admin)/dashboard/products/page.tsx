@@ -1,13 +1,13 @@
 "use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { getProducts } from "@/lib/mongodb/actions/products.actions";
-import {useEffect, useState} from "react";
-import {Product} from "@/types";
+import { useEffect, useState } from "react";
+import { Product } from "@/types";
 
 export default function Products() {
-  // const products = await getProducts();
-  const [products, setProducts] = useState<Product[]>()
+  const [products, setProducts] = useState<Product[]>();
 
   useEffect(() => {
     (async () => {
@@ -16,8 +16,8 @@ export default function Products() {
     })();
   }, []);
 
-  if(!products){
-    return <div>Loading...</div>
+  if (!products) {
+    return <div>Loading...</div>;
   }
 
   return (

@@ -3,16 +3,14 @@
 import ProductForm from "@/components/admin/ProductForm";
 import { getProductById } from "@/lib/mongodb/actions/products.actions";
 import { usePathname } from "next/navigation";
-import {useEffect, useState} from "react";
-import {ProductId} from "@/types";
+import { useEffect, useState } from "react";
+import { ProductId } from "@/types";
 
 export default function EditProduct() {
   const path: string = usePathname();
   const id: string = path.slice(path.lastIndexOf("/") + 1, path.length);
-  // const product = await getProductById(id);
 
   const [product, setProduct] = useState<ProductId>();
-
 
   useEffect(() => {
     (async () => {

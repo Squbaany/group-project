@@ -1,7 +1,7 @@
 import CategoryForm from "@/components/admin/CategoryForm";
 import { getCategories } from "@/lib/mongodb/actions/category.actions";
 import Link from "next/link";
-import {categoryProps} from "@/types";
+import { categoryProps } from "@/types";
 
 export default async function Categories() {
   const categories = await getCategories();
@@ -29,9 +29,12 @@ export default async function Categories() {
                   <div key={obj.key} className="mb-2">
                     <p>{obj.key}</p>
                     Properties:
-                    {obj.value && obj.value.map((el: String, idx: Number) => (
-                      <span key={idx.toString()} className="ml-0.5">{el},</span>
-                    ))}
+                    {obj.value &&
+                      obj.value.map((el: String, idx: Number) => (
+                        <span key={idx.toString()} className="ml-0.5">
+                          {el},
+                        </span>
+                      ))}
                   </div>
                 ))}
               </td>

@@ -16,11 +16,28 @@ export async function createProduct(product: CreateProductParams) {
   }
 }
 
-export async function getProducts() {
+export async function getProducts(limit: number) {
   try {
     await connectToDatabase();
 
-    const products = await Product.find().populate("category", "_id name");
+    const products = await Product.find()
+      .populate("category", "_id name")
+      .limit(limit);
+
+    return JSON.parse(JSON.stringify(products));
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function getProductsByCategory(id: string) {
+  try {
+    await connectToDatabase();
+
+    const products = await Product.find({ category: id }).populate(
+      "category",
+      "_id name"
+    );
 
     return JSON.parse(JSON.stringify(products));
   } catch (err) {

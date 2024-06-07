@@ -5,18 +5,16 @@ import {
   deleteProduct,
 } from "@/lib/mongodb/actions/products.actions";
 import { usePathname, useRouter } from "next/navigation";
-import {useEffect, useState} from "react";
-import {deleteProdName} from "@/types";
+import { useEffect, useState } from "react";
+import { deleteProdName } from "@/types";
 
 export default function DeleteProducts() {
   const router = useRouter();
 
   const path: string = usePathname();
   const id: string = path.slice(path.lastIndexOf("/") + 1, path.length);
-  // const product = await getProductById(id);
 
-  const [product, setProduct] = useState<deleteProdName>({title: ""});
-
+  const [product, setProduct] = useState<deleteProdName>({ title: "" });
 
   useEffect(() => {
     (async () => {

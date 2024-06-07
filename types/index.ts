@@ -23,7 +23,7 @@ export type CreateProductParams = {
 
 export type deleteProdName = {
   title: string;
-}
+};
 
 export type UpdateProductParams = {
   _id: string;
@@ -68,13 +68,13 @@ export type Product = {
 };
 
 export type ProductId = {
-  _id?: string;
-  title?: string;
-  description?: string;
-  imageUrl?: string;
-  price?: number;
-  category?: string;
-  properties?: { key: string; value: string }[];
+  _id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  price: number;
+  category: string;
+  properties: { key: string; value: string }[];
 };
 
 // ====== CART PARAMS
@@ -99,7 +99,7 @@ export type categoryId = {
 export type categoryProps = {
   key: string;
   value: string[];
-}
+};
 
 // ====== ORDER PARAMS
 export type CheckoutOrderParams = {

@@ -47,6 +47,18 @@ export async function getCategoryById(id: string) {
   }
 }
 
+export async function getCategoryByName(name: string) {
+  try {
+    await connectToDatabase();
+
+    const category = await Category.findOne({ name: name });
+
+    return JSON.parse(JSON.stringify(category));
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export async function updateCategory(
   id: string,
   category: CreateCategoryParams

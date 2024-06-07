@@ -61,7 +61,7 @@ const Header = () => {
           <NavItems />
         </nav>
 
-        <div className="flex justify-end gap-3  items-center">
+        <div className="flex justify-end gap-3 items-center">
           <SignedOut>
             <Button asChild className="rounded-full size-lg">
               <Link href="/sign-in">Sign in</Link>

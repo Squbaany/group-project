@@ -1,18 +1,16 @@
 "use client";
 
 import CategoryForm from "@/components/admin/CategoryForm";
-import {getCategoryById} from "@/lib/mongodb/actions/category.actions";
+import { getCategoryById } from "@/lib/mongodb/actions/category.actions";
 import { usePathname } from "next/navigation";
-import {useEffect, useState} from "react";
-import {categoryId} from "@/types";
+import { useEffect, useState } from "react";
+import { categoryId } from "@/types";
 
 export default function EditCategory() {
   const path: string = usePathname();
   const id: string = path.slice(path.lastIndexOf("/") + 1, path.length);
-  // const category = await getCategoryById(id);
 
   const [category, setCategory] = useState<categoryId>();
-
 
   useEffect(() => {
     (async () => {
@@ -21,8 +19,8 @@ export default function EditCategory() {
     })();
   }, [id]);
 
-  if(!category){
-    return <div>Loading...</div>
+  if (!category) {
+    return <div>Loading...</div>;
   }
 
   return (

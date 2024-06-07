@@ -2,10 +2,13 @@ import CategoriesShowcase from "@/components/shared/CategoriesShowcase";
 import Perks from "@/components/shared/Perks";
 import ProductsShowcase from "@/components/shared/ProductsShowcase";
 import { Button } from "@/components/ui/button";
+import { getProducts } from "@/lib/mongodb/actions/products.actions";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
+  const products = await getProducts(4);
+
   return (
     <>
       <section className="bg-gradient-to-t from-primary-300 to-primary-400 py-5 md:py-10">
@@ -36,7 +39,7 @@ export default async function Home() {
       </section>
       <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
         <h2 className="h2-bold mb-8">Popular products</h2>
-        <ProductsShowcase products={[]} />
+        <ProductsShowcase products={products} />
       </section>
       <section
         id="categories"
