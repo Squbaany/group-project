@@ -10,6 +10,11 @@ export interface IOrder extends Document {
     firstName: string;
     lastName: string;
   };
+  address: {
+    street: string;
+    postalcode: string;
+    city: string;
+  };
 }
 
 const OrderSchema = new Schema({
@@ -39,6 +44,17 @@ const OrderSchema = new Schema({
   buyer: {
     type: Schema.Types.ObjectId,
     ref: "User",
+  },
+  address: {
+    street: {
+      type: String,
+    },
+    postalcode: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
   },
 });
 

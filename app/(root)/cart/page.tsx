@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/Cart/CartContext";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Cart() {
+  const navigate = useRouter();
+
   const {
     cartItems,
     removeFromCart,
@@ -123,7 +126,10 @@ export default function Cart() {
               </p>
             </div>
 
-            <Button className="button bg-green-600 hover:bg-green-700">
+            <Button
+              className="button bg-green-600 hover:bg-green-700"
+              onClick={() => navigate.push("/cart/checkout")}
+            >
               Checkout
               <Image
                 src="/assets/icons/arrow-right.svg"

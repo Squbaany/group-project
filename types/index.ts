@@ -100,16 +100,19 @@ export type categoryProps = {
 
 // ====== ORDER PARAMS
 export type CheckoutOrderParams = {
-  createdAt: Date;
-  stripeId: string;
   totalAmount: string;
-  items: { id: string; quantity: number }[];
+  items: { id: string; price: string; quantity: number }[];
   buyerId: string;
+  address: {
+    street: string;
+    postalcode: string;
+    city: string;
+  };
 };
 
 export type CreateOrderParams = {
   stripeId: string;
-  productId: string;
+  items: [{ id: string; quantity: number }];
   buyerId: string;
   totalAmount: string;
   createdAt: Date;

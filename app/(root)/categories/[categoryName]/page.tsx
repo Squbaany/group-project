@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { getCategoryByName } from "@/lib/mongodb/actions/category.actions";
 import { getProductsByCategory } from "@/lib/mongodb/actions/products.actions";
 import { Product, categoryId } from "@/types";
+import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -43,11 +44,8 @@ export default function Categories({
   if (!category || !products)
     return (
       <div className="wrapper h-full content-center">
-        <div className="flex flex-col text-center">
-          <h1 className="h4-medium">Ooops, something went wrong</h1>
-          <Link href="/" className="p-semibold-18">
-            Back to main page
-          </Link>
+        <div className="flex flex-col text-center items-center">
+          <Loader2 />
         </div>
       </div>
     );
