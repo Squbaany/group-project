@@ -60,13 +60,10 @@ export default function Orders() {
               ))}
             </ul>
             <p className="mt-6 text-primary-300">
-              Delivery fee: {Number(order.totalAmount) > 150 ? "free" : "15$"}
+              Shipping fee: {Number(order.totalAmount) > 150 ? "Free" : "$ 15"}
             </p>
             <p className="text-green-500 p-bold-20">
-              Total amount: ${" "}
-              {Number(order.totalAmount) > 150
-                ? order.totalAmount
-                : (Number(order.totalAmount) + 15).toFixed(2)}
+              Total amount: $ {order.totalAmount}
             </p>
             <Separator className="my-2" />
             <p className="p-medium-20">Delivery info:</p>

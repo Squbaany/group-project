@@ -120,7 +120,7 @@ export default function Checkout() {
             </div>
           ))}
           <div className="mt-4 text-right">
-            <p>Shipping: {cartTotal > 150 ? "free" : "$ 15"} </p>
+            <p>Shipping: {cartTotal > 150 ? "Free" : "$ 15"} </p>
             <h3 className="h5-bold">
               Cart total:{" "}
               {cartTotal > 150
