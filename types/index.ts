@@ -115,12 +115,12 @@ export type CreateOrderParams = {
   items: [{ id: string; quantity: number }];
   buyerId: string;
   totalAmount: string;
+  address: {
+    street: string;
+    postalcode: string;
+    city: string;
+  };
   createdAt: Date;
-};
-
-export type GetOrdersByProductParams = {
-  eventId: string;
-  searchString: string;
 };
 
 export type GetOrdersByUserParams = {

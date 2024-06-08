@@ -28,8 +28,9 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
         quantity: item.quantity,
       })),
       metadata: {
-        buyerId: order.buyerId,
         address: JSON.stringify(order.address),
+        buyerId: order.buyerId,
+        items: JSON.stringify(order.items),
       },
       mode: "payment",
       success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/orders`,
@@ -48,7 +49,6 @@ export const createOrder = async (order: CreateOrderParams) => {
 
     const newOrder = await Order.create({
       ...order,
-      items: order.items,
       buyer: order.buyerId,
     });
 

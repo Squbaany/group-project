@@ -58,8 +58,9 @@ export default function Checkout() {
 
     console.log(order);
 
-    clearCart();
     await checkoutOrder(order);
+
+    clearCart();
   }
 
   useEffect(() => {

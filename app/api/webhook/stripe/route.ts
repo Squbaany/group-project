@@ -21,19 +21,25 @@ export async function POST(request: Request) {
   if (eventType === "checkout.session.completed") {
     const { id, amount_total, metadata } = event.data.object;
 
-    console.log(event.data);
+    const items = JSON.parse(metadata?.items || "[]");
 
-    // const order = {
-    //   stripeId: id,
-    //   items: metadata?.items || [],
-    //   buyerId: metadata?.buyerId || "",
-    //   totalAmount: amount_total ? (amount_total / 100).toString() : "0",
-    //   createdAt: new Date(),
-    // };
+    const order = {
+      stripeId: id,
+      items: items.map(
+        (item: { id: string; price: string; quantity: number }) => ({
+          id: item.id,
+          quantity: item.quantity,
+        })
+      ) || [{}],
+      buyerId: metadata?.buyerId || "",
+      totalAmount: amount_total ? (amount_total / 100).toString() : "0",
+      address: JSON.parse(metadata?.address || "{}"),
+      createdAt: new Date(),
+    };
 
-    // const newOrder = await createOrder(order);
+    const newOrder = await createOrder(order);
 
-    return NextResponse.json({ message: "OK", order: id });
+    return NextResponse.json({ message: "OK", order: newOrder });
   }
 
   return new Response("", { status: 200 });
