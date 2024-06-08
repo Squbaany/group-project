@@ -23,7 +23,7 @@ export default function Checkout() {
   const { user } = useUser();
   const userId = user?.publicMetadata?.userId as string;
 
-  const { cartItems, clearCart, cartTotal, cartCount } = useCart();
+  const { cartItems, addToCart, clearCart, cartTotal, cartCount } = useCart();
 
   const formSchema = z.object({
     street: z.string().min(2).max(50),
@@ -55,8 +55,6 @@ export default function Checkout() {
         city: values.city,
       },
     };
-
-    console.log(order);
 
     await checkoutOrder(order);
 
@@ -92,16 +90,16 @@ export default function Checkout() {
       <h2 className="h5-bold">
         Cart <span className="text-primary-400">({cartCount})</span>
       </h2>
-      <div className="flex flex-col w-full md:gap-4 lg:gap-6 xl:gap-10 justify-center ">
-        <div className="flex-1 flex-col border p-4 rounded-xl">
+      <div className="w-full">
+        <div className="flex flex-col border p-4 rounded-xl gap-4">
           {cartItems.map((item) => (
             <div
               key={item.product._id}
-              className="flex flex-col md:flex-row gap-10 md:gap-0 justify-between items-center border p-5 rounded-xl"
+              className="flex flex-col md:flex-row gap-10 md:gap-0 justify-between items-center border hover:border-primary duration-200 p-5 rounded-xl"
             >
               <div className="flex flex-row items-center gap-4">
                 <Image
-                  src={item.product.imageUrl}
+                  src={item.product.imageUrl!}
                   alt={item.product.title}
                   width={100}
                   height={100}
@@ -121,9 +119,13 @@ export default function Checkout() {
               </div>
             </div>
           ))}
-          <div>
-            <h3 className="h5-bold mt-4 text-right">
-              Cart total: {cartTotal.toFixed(2)}
+          <div className="mt-4 text-right">
+            <p>Shipping: {cartTotal > 150 ? "free" : "$ 15"} </p>
+            <h3 className="h5-bold">
+              Cart total:{" "}
+              {cartTotal > 150
+                ? cartTotal.toFixed(2)
+                : (cartTotal + 15).toFixed(2)}
             </h3>
           </div>
         </div>

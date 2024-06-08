@@ -36,7 +36,7 @@ export default function Cart() {
       </h2>
       <div className="flex flex-col lg:flex-row w-full md:gap-4 lg:gap-6 xl:gap-10 justify-center ">
         <div className="flex-1 flex-col border p-4 rounded-xl">
-          <div className="flex pb-4">
+          <div className="flex">
             <Button
               className="ml-auto bg-red-500 hover:bg-red-600"
               onClick={clearCart}
@@ -47,24 +47,24 @@ export default function Cart() {
           {cartItems.map((item) => (
             <div
               key={item.product._id}
-              className="flex flex-col md:flex-row gap-10 md:gap-0 justify-between items-center border p-5 rounded-xl"
+              className="flex flex-col md:flex-row gap-10 md:gap-0 justify-between items-center border hover:border-primary duration-200 p-5 rounded-xl mt-4"
             >
               <div className="flex flex-row items-center gap-4">
                 <Image
-                  src={item.product.imageUrl}
+                  src={item.product.imageUrl!}
                   alt={item.product.title}
                   width={100}
                   height={100}
                 />
-                <div>
+                <Link href={`/product/${item.product._id}`}>
                   <h3 className="h5-bold">{item.product.title}</h3>
                   <p className="text-primary-400">{item.product.description}</p>
-                </div>
+                </Link>
               </div>
               <div className="flex flex-row items-center gap-4 md:gap-6 xl:gap-10">
-                <div className="flex flex-row border items-center rounded-lg">
+                <div className="flex flex-row border hover:border-primary duration-200 items-center rounded-full">
                   <Button
-                    className="rounded-full p-3 bg-white hover:bg-white"
+                    className="p-3 bg-white hover:bg-primary/10 duration-200 rounded-full"
                     onClick={() =>
                       updateCartItemQuantity(
                         item.product._id,
@@ -79,9 +79,9 @@ export default function Cart() {
                       alt="Decrease quantity"
                     />
                   </Button>
-                  <p className="p-regular-16">{item.quantity}</p>
+                  <p className="p-regular-16 px-2">{item.quantity}</p>
                   <Button
-                    className="rounded-full p-3 bg-white hover:bg-white"
+                    className="p-3 bg-white hover:bg-primary/10 duration-200 rounded-full"
                     onClick={() =>
                       updateCartItemQuantity(
                         item.product._id,
@@ -103,7 +103,7 @@ export default function Cart() {
                   </p>
                 </div>
                 <Button
-                  className="rounded-full p-3 bg-white hover:bg-white"
+                  className="rounded-full p-3 bg-white hover:bg-primary/10 duration-200"
                   onClick={() => removeFromCart(item.product._id)}
                 >
                   <Image

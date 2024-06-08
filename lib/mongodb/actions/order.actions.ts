@@ -11,6 +11,7 @@ import { handleError } from "@/lib/utils";
 import { connectToDatabase } from "..";
 import Order from "../models/order.model";
 import Product from "../models/product.model";
+import User from "../models/user.model";
 
 export const checkoutOrder = async (order: CheckoutOrderParams) => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
@@ -32,6 +33,14 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
         buyerId: order.buyerId,
         items: JSON.stringify(order.items),
       },
+      shipping_options: [
+        {
+          shipping_rate:
+            Number(order.totalAmount) > 150
+              ? "shr_1PPSdaRu4Srsv7TYcncFNPlA"
+              : "shr_1PPSdMRu4Srsv7TYZiUGfDw1",
+        },
+      ],
       mode: "payment",
       success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/orders`,
       cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/`,
@@ -58,10 +67,7 @@ export const createOrder = async (order: CreateOrderParams) => {
   }
 };
 
-export async function getOrdersByUser({
-  userId,
-  limit = 3,
-}: GetOrdersByUserParams) {
+export async function getOrdersByUser({ userId }: GetOrdersByUserParams) {
   try {
     await connectToDatabase();
 
@@ -70,13 +76,15 @@ export async function getOrdersByUser({
     const orders = await Order.distinct("product._id")
       .find(conditions)
       .sort({ createdAt: "desc" })
-      .limit(limit)
       .populate({
         path: "items",
-        model: Product,
-        select: "_id title",
+        populate: { path: "id", model: Product, select: "_id title price" },
+      })
+      .populate({
+        path: "buyer",
+        model: User,
+        select: "_id firstName lastName",
       });
-
     return JSON.parse(JSON.stringify(orders));
   } catch (error) {
     handleError(error);

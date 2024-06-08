@@ -58,10 +58,10 @@ export type Product = {
   _id: string;
   title: string;
   description: string;
-  imageUrl: string;
+  imageUrl?: string;
   price: number;
-  category: string;
-  properties: { key: string; value: string }[];
+  category?: string;
+  properties?: { key: string; value: string }[];
 };
 
 export type ProductId = {
@@ -125,8 +125,26 @@ export type CreateOrderParams = {
 
 export type GetOrdersByUserParams = {
   userId: string | null;
-  limit?: number;
-  page: string | number | null;
+};
+
+export type Order = {
+  _id: string;
+  stripeId: string;
+  totalAmount: string;
+  items: {
+    id: { _id: string; title: string; price: string };
+    quantity: number;
+  }[];
+  buyer: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+  };
+  address: {
+    street: string;
+    postalcode: string;
+    city: string;
+  };
 };
 
 // ====== URL QUERY PARAMS
