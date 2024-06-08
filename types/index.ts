@@ -58,10 +58,10 @@ export type Product = {
   _id: string;
   title: string;
   description: string;
-  imageUrl?: string;
+  imageUrl: string;
   price: number;
-  category?: string;
-  properties?: { key: string; value: string }[];
+  category: string;
+  properties: { key: string; value: string }[];
 };
 
 export type ProductId = {
