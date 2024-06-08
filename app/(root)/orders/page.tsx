@@ -60,7 +60,7 @@ export default function Orders() {
               ))}
             </ul>
             <p className="mt-6 text-primary-300">
-              Shipping fee: {Number(order.totalAmount) > 150 ? "Free" : "$ 15"}
+              Shipping fee: {Number(order.totalAmount) < 165 ? "$ 15" : "Free"}
             </p>
             <p className="text-green-500 p-bold-20">
               Total amount: $ {order.totalAmount}

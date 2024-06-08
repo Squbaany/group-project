@@ -51,6 +51,28 @@ export async function getProductsByQuery(limit = 4) {
   }
 }
 
+export async function getProductsBySearch(
+  search: Record<string, string[]>,
+  id: string
+) {
+  try {
+    await connectToDatabase();
+
+    const products = await Product.find({
+      category: id,
+      properties: { $elemMatch: { value: { $in: search } } },
+    }).populate({
+      path: "category",
+      model: Category,
+      select: "_id name",
+    });
+
+    return JSON.parse(JSON.stringify(products));
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export async function getProductsByCategory(id: string) {
   try {
     await connectToDatabase();

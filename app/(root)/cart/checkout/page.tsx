@@ -99,7 +99,7 @@ export default function Checkout() {
             >
               <div className="flex flex-row items-center gap-4">
                 <Image
-                  src={item.product.imageUrl!}
+                  src={item.product.imageUrl}
                   alt={item.product.title}
                   width={100}
                   height={100}
