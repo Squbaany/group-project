@@ -1,27 +1,27 @@
 export const headerLinks = [
   {
     label: "Phones",
-    route: "phones",
+    route: "666203ac6163f4a93388205a",
   },
   {
     label: "Tablets",
-    route: "tablets",
+    route: "66631acb686c0878eed7e95f",
   },
   {
     label: "Laptops",
-    route: "laptops",
+    route: "66631aee686c0878eed7e967",
   },
   {
     label: "Smart Watches",
-    route: "smart-watches",
+    route: "66631af8d3d4499fd12f948f",
   },
   {
     label: "Speakers",
-    route: "speakers",
+    route: "66631afed3d4499fd12f9491",
   },
   {
     label: "Accessories",
-    route: "accessories",
+    route: "66631b08d3d4499fd12f9493",
   },
 ];
 

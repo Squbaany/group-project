@@ -93,6 +93,12 @@ export type categoryId = {
   properties?: { key: string; value: string[] }[];
 };
 
+export type Category = {
+  _id: string;
+  name: string;
+  properties: { key: string; value: string[] }[];
+};
+
 export type categoryProps = {
   key: string;
   value: string[];

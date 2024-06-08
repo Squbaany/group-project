@@ -51,10 +51,7 @@ export async function getProductsByQuery(limit = 4) {
   }
 }
 
-export async function getProductsBySearch(
-  search: Record<string, string[]>,
-  id: string
-) {
+export async function getProductsBySearch(search: string[], id: string) {
   try {
     await connectToDatabase();
 
