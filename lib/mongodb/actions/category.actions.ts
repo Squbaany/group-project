@@ -66,7 +66,6 @@ export async function updateCategory(
   try {
     await connectToDatabase();
 
-    console.log(category);
     const updatedCategory = await Category.updateOne({ _id: id }, category);
 
     return JSON.parse(JSON.stringify(updatedCategory));
