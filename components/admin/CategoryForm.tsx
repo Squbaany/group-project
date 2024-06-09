@@ -18,7 +18,7 @@ export default function CategoryForm(category: categoryId) {
 
   const handleSubmit = async () => {
     properties.forEach((el) => {
-      if (typeof el.value[0] === "string") el.value = el.value[0].split(",");
+      if (typeof el.value[0] === "string" && el.value[0].includes(',')) el.value = el.value[0].split(",");
     });
 
     const rawData = {
@@ -58,6 +58,7 @@ export default function CategoryForm(category: categoryId) {
       properties[index].value = [newVal];
       return properties;
     });
+    console.log(properties)
   }
 
   function removeProperty(indexToRemove: number) {
