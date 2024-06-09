@@ -10,11 +10,7 @@ export async function getFeatured() {
   try {
     await connectToDatabase();
 
-    const product = await Featured.findOne().populate({
-      path: "category",
-      model: Category,
-      select: "_id name",
-    });
+    const product = await Featured.findOne();
 
     return JSON.parse(JSON.stringify(product));
   } catch (err) {
@@ -29,17 +25,19 @@ export async function updateFeatured() {
     await Featured.deleteOne();
 
     let featured;
-    await Product.aggregate().sample(1).then( (val: ProdId[]) => {
-      featured = {
-        prodId: val[0]._id,
-        title: val[0].title,
-        description: val[0].description,
-        imageUrl: val[0].imageUrl,
-        price: val[0].price,
-        createdAt: Date.now()
-      };
-      console.log(featured);
-    })
+    await Product.aggregate()
+      .sample(1)
+      .then((val: ProdId[]) => {
+        featured = {
+          prodId: val[0]._id,
+          title: val[0].title,
+          description: val[0].description,
+          imageUrl: val[0].imageUrl,
+          price: val[0].price,
+          createdAt: Date.now(),
+        };
+        console.log(featured);
+      });
 
     const updatedFeatured = await Featured.create(featured);
 

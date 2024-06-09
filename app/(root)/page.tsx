@@ -1,4 +1,5 @@
 import CategoriesShowcase from "@/components/shared/CategoriesShowcase";
+import FeaturedProdut from "@/components/shared/FeaturedProdut";
 import Perks from "@/components/shared/Perks";
 import ProductsShowcase from "@/components/shared/ProductsShowcase";
 import { Button } from "@/components/ui/button";
@@ -36,6 +37,9 @@ export default async function Home() {
             />
           </div>
         </div>
+      </section>
+      <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
+        <FeaturedProdut />
       </section>
       <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
         <h2 className="h2-bold mb-8">Popular products</h2>

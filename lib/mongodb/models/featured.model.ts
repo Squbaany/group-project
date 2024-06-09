@@ -11,12 +11,12 @@ export interface IFeatured extends Document {
 }
 
 const FeaturedSchema = new Schema({
+  prodId: { type: String, required: true },
   title: { type: String, required: true },
-  prodId: { type: String },
   description: { type: String },
   imageUrl: { type: String, required: true },
-  price: { type: Number },
-  createdAt: { type: Date },
+  price: { type: Number, required: true },
+  createdAt: { type: Date, required: true },
 });
 
 const Featured = models.Featured || model("Featured", FeaturedSchema);
