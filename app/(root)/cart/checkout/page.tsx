@@ -23,7 +23,7 @@ export default function Checkout() {
   const { user } = useUser();
   const userId = user?.publicMetadata?.userId as string;
 
-  const { cartItems, addToCart, clearCart, cartTotal, cartCount } = useCart();
+  const { cartItems, clearCart, cartTotal, cartCount } = useCart();
 
   const formSchema = z.object({
     street: z.string().min(2).max(50),
