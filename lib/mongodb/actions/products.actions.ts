@@ -38,6 +38,7 @@ export async function getProductsByQuery(limit = 4) {
     await connectToDatabase();
 
     const products = await Product.find()
+      .sort({ price: "desc" })
       .populate({
         path: "category",
         model: Category,
@@ -55,16 +56,20 @@ export async function getProductsBySearch(search: string[], id: string) {
   try {
     await connectToDatabase();
 
+    console.log(search);
+
     const products = await Product.find({
       category: id,
       properties: { $elemMatch: { value: { $in: search } } },
     }).populate({
       path: "category",
       model: Category,
-      select: "_id name",
+      select: "_id name properties",
     });
 
-    return JSON.parse(JSON.stringify(products));
+    const fetchedProducts = JSON.parse(JSON.stringify(products));
+
+    return fetchedProducts;
   } catch (err) {
     console.log(err);
   }

@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
 
 export const Filter = ({ id }: { id: string }) => {
   const router = useRouter();
@@ -53,6 +54,14 @@ export const Filter = ({ id }: { id: string }) => {
 
     router.push(newUrl, { scroll: false });
   };
+
+  if (!category) {
+    return (
+      <div className="flex-center h-full">
+        <Loader2 className="w-10 h-10 animate-spin " />
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-6">

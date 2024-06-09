@@ -1,14 +1,11 @@
 import { Filter } from "@/components/shared/Filters";
 import ProductsShowcase from "@/components/shared/ProductsShowcase";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 import { getCategoryById } from "@/lib/mongodb/actions/category.actions";
 import {
   getProductsByCategory,
   getProductsBySearch,
 } from "@/lib/mongodb/actions/products.actions";
 import { Category, Product } from "@/types";
-import { Loader2 } from "lucide-react";
 
 type CategoriesProps = {
   params: { id: string };
@@ -24,6 +21,18 @@ export default async function Categories({
   const paramsSearch = (searchParams.search as string) || "";
 
   const searched = paramsSearch ? JSON.parse(paramsSearch) : [];
+
+  console.log(searched);
+
+  const filteredProperties = category.properties.map((property) => {
+    const filteredValues = property.value.filter((value) =>
+      searched.includes(value)
+    );
+
+    return { key: property.key, value: filteredValues };
+  });
+
+  console.log(filteredProperties);
 
   const products = paramsSearch
     ? ((await getProductsBySearch(searched, id)) as Product[])
