@@ -10,7 +10,7 @@ const FeaturedProdut = async () => {
 
   return (
     <div>
-      <div className="flex flex-col lg:flex-row justify-between items-center mb-10">
+      <div className="flex flex-col lg:flex-row justify-between items-center mb-10 gap-4">
         <h2 className="h2-bold">Product of the day</h2>
         <div>
           <Timer countDownto={product.createdAt} />
@@ -30,9 +30,13 @@ const FeaturedProdut = async () => {
             <p className="p-regular-20 text-primary-300">
               {product.description}
             </p>
-            <Button className="button mt-10">
-              <Link href={`/product/${product.prodId}`}>Check it out !</Link>
-            </Button>
+
+            <Link
+              href={`/product/${product.prodId}`}
+              className="bg-primary text-center text-white p-4 rounded-full mt-4 hover:bg-primary/90 duration-200"
+            >
+              Check it out !
+            </Link>
           </div>
         </div>
       </div>

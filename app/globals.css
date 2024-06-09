@@ -247,28 +247,6 @@ body {
   background-color: #3b3b3b
 }
 
-/* ========================================== REACT-DATEPICKER STYLES */
-.datePicker {
-  width: 100%;
-}
-
-.react-datepicker__input-container input {
-  background-color: transparent;
-  width: 100%;
-  outline: none;
-  margin-left: 16px;
-}
-
-.react-datepicker__day--selected {
-  background-color: #3b3b3b !important;
-  color: #ffffff !important;
-  border-radius: 4px;
-}
-
-.react-datepicker__time-list-item--selected {
-  background-color: #3b3b3b !important;
-}
-
 /* xdd */
 
 .admininput {
