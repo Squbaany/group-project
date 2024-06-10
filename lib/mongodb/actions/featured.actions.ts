@@ -36,7 +36,6 @@ export async function updateFeatured() {
           price: val[0].price,
           createdAt: Date.now(),
         };
-        console.log(featured);
       });
 
     const updatedFeatured = await Featured.create(featured);
