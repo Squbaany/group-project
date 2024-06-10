@@ -1,7 +1,7 @@
 import { updateFeatured } from "@/lib/mongodb/actions/featured.actions";
 import { NextResponse } from "next/server";
 
-export async function changeFeatured() {
+export async function POST() {
   try {
     await updateFeatured();
 
