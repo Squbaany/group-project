@@ -55,12 +55,6 @@ export default function Nav() {
         >
           Orders
         </Link>
-        <Link
-          href={"/dashboard/settings"}
-          className={pathname.includes("settings") ? activeLink : inactiveLink}
-        >
-          Settings
-        </Link>
       </nav>
     </aside>
   );

@@ -31,6 +31,18 @@ export async function getUserById(userId: string) {
   }
 }
 
+export async function getUsers() {
+  try {
+    await connectToDatabase();
+
+    const user = await User.find();
+
+    return JSON.parse(JSON.stringify(user));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function updateUser(clerkId: string, user: UpdateUserParams) {
   try {
     await connectToDatabase();

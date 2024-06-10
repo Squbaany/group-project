@@ -6,6 +6,14 @@ export type CreateUserParams = {
   email: string;
 };
 
+export type adminPanelUser = {
+  _id: string;
+  clerkId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+};
+
 export type UpdateUserParams = {
   firstName: string;
   lastName: string;
