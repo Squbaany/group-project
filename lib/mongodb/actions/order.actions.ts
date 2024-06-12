@@ -71,7 +71,6 @@ export async function getOrdersByUser({ userId }: GetOrdersByUserParams) {
   try {
     await connectToDatabase();
 
-    console.log(userId)
     const conditions = { buyer: userId };
 
     const orders = await Order.distinct("product._id")
