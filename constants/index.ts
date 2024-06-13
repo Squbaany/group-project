@@ -33,7 +33,7 @@ export const CategoryLinks = [
   },
   {
     label: "Tablets",
-    route: "666203ac6163f4a93388205a",
+    route: "66631acb686c0878eed7e95f",
     img: "/ui/categories/ipads-category.png",
   },
   {
