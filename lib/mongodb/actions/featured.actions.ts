@@ -41,8 +41,6 @@ export async function updateFeatured() {
 
     const updatedFeatured = await Featured.create(featured);
 
-    revalidatePath("/");
-
     return JSON.parse(JSON.stringify(updatedFeatured));
   } catch (err) {
     console.log(err);
