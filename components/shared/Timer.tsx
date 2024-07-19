@@ -1,6 +1,7 @@
 "use client";
 
 import { time } from "console";
+import { revalidatePath } from "next/cache";
 import { useEffect, useState } from "react";
 
 const Timer = ({ countDownto }: { countDownto: Date }) => {
@@ -9,8 +10,6 @@ const Timer = ({ countDownto }: { countDownto: Date }) => {
     minutes: 0,
     seconds: 0,
   });
-
-  console.log(countDownto);
 
   const targetDate = new Date(countDownto);
   targetDate.setDate(targetDate.getDate() + 1);

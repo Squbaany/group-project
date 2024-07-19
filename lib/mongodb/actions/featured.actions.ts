@@ -5,6 +5,7 @@ import { connectToDatabase } from "..";
 import Category from "../models/category.model";
 import Featured from "@/lib/mongodb/models/featured.model";
 import Product from "@/lib/mongodb/models/product.model";
+import { revalidatePath } from "next/cache";
 
 export async function getFeatured() {
   try {
@@ -39,6 +40,8 @@ export async function updateFeatured() {
       });
 
     const updatedFeatured = await Featured.create(featured);
+
+    revalidatePath("/");
 
     return JSON.parse(JSON.stringify(updatedFeatured));
   } catch (err) {

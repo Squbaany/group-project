@@ -1,7 +1,6 @@
 import { getFeatured } from "@/lib/mongodb/actions/featured.actions";
 import Image from "next/image";
 import React from "react";
-import { Button } from "../ui/button";
 import Link from "next/link";
 import Timer from "./Timer";
 
